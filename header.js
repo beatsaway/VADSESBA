@@ -6,17 +6,18 @@
     current = "index.html";
   }
 
+  /* [href, i18n key, nav group] — groups drive sidebar colour accents */
   var items = [
-    ["index.html", "nav.how_to"],
-    ["part1.html", "nav.intro"],
-    ["part2.html", "nav.req"],
-    ["part3.html", "nav.criteria"],
-    ["part3b.html", "nav.rw_rubric"],
-    ["part3c.html", "nav.art_rubric"],
-    ["part4.html", "nav.conduct"],
-    ["part5.html", "nav.admin"],
-    ["part6.html", "nav.moderation"],
-    ["part7.html", "nav.malpractice"],
+    ["index.html", "nav.how_to", "start"],
+    ["part1.html", "nav.intro", "start"],
+    ["part2.html", "nav.req", "study"],
+    ["part3.html", "nav.criteria", "study"],
+    ["part3b.html", "nav.rw_rubric", "rubrics"],
+    ["part3c.html", "nav.art_rubric", "rubrics"],
+    ["part4.html", "nav.conduct", "conduct"],
+    ["part5.html", "nav.admin", "integrity"],
+    ["part6.html", "nav.moderation", "integrity"],
+    ["part7.html", "nav.malpractice", "integrity"],
   ];
 
   var root = document.getElementById("site-nav-root");
@@ -75,10 +76,15 @@
   for (var i = 0; i < items.length; i++) {
     var href = items[i][0];
     var i18nKey = items[i][1];
+    var group = items[i][2] || "start";
     var a = document.createElement("a");
     a.href = href;
     a.setAttribute("data-i18n", i18nKey);
+    a.setAttribute("data-nav-group", group);
     a.textContent = "";
+    if (i > 0 && items[i][2] !== items[i - 1][2]) {
+      a.classList.add("site-sidebar__nav-link--section-gap");
+    }
     if (href === current) {
       a.setAttribute("aria-current", "page");
     }
