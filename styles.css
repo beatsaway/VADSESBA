@@ -407,12 +407,13 @@ main li strong {
   font-weight: 700;
   color: var(--link, #1565c0);
   cursor: pointer;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
+  text-decoration: none;
 }
 
-.rubric-guide-trigger:hover,
+.rubric-guide-trigger:hover {
+  color: var(--link-hover, #0d47a1);
+}
+
 .rubric-guide-trigger:focus-visible {
   color: var(--link-hover, #0d47a1);
   outline: 2px solid rgba(21, 101, 192, 0.35);
